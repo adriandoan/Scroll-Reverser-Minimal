@@ -3,35 +3,28 @@
 
 #import <Foundation/Foundation.h>
 
-// The possible sources of scrolling events.
 typedef enum {
     ScrollEventSourceMouse=0,
     ScrollEventSourceTrackpad,
-    ScrollEventSourceMax 
+    ScrollEventSourceMax
 } ScrollEventSource;
 
-// We abstract the system defined scrolling phases into these possibilities.
 typedef enum {
     ScrollPhaseStart=0,
-    ScrollPhaseNormal, // fingers on pad
-    ScrollPhaseMomentum, // fingers off pad, but scrolling with momentum
-    ScrollPhaseEnd,      // scrolling ended
+    ScrollPhaseNormal,
+    ScrollPhaseMomentum,
+    ScrollPhaseEnd,
     ScrollPhaseMax
 } ScrollPhase;
 
-@class MouseTap, TapLogger, AppDelegate;
 @interface MouseTap : NSObject {
 @public
     NSUInteger touching;
     uint64_t lastTouchTime;
     ScrollEventSource lastSource;
-    
-    __weak TapLogger *logger;    
 }
 
 @property (getter=isActive) BOOL active;
 - (void)enableTap;
 
 @end
-
-
